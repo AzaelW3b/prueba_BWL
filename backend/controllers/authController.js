@@ -3,10 +3,10 @@ const bcryptjs = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.autenticarUsuario = async (req, res) => {
-    const { email, password } = req.body;
+    const { correo, password } = req.body;
 
     try {
-        let usuario = await Usuarios.findOne({ email });
+        let usuario = await Usuarios.findOne({ correo });
 
         if (!usuario) {
             return res.status(400).json({ msg: 'El usuario no existe' });
