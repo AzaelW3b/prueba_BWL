@@ -1,0 +1,18 @@
+@mixin adaptar($tamanio){
+    @media(min-width:$tamanio){
+        @content;
+    }
+}
+
+@mixin filtro($color){
+    &::before{
+        content: '';
+        background-color: rgba($color:$color, $alpha: .6);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+}

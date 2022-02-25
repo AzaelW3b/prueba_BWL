@@ -1,0 +1,74 @@
+.contenedor-formulario{
+    margin-top: 7rem;
+    @include adaptar(768px){
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+
+    }
+}
+.contenedor-imagen{
+    h1{
+        font-size: 5rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:100%;
+        margin-top: 0;
+        color: $blanco;
+    }
+    position: relative;
+    z-index: 1;
+    background-image: url("../../img/bg.jpg");
+    background-position: center center;
+    background-size: cover;
+    height: 200px;
+    @include adaptar(768px){
+        height: auto;
+    }
+    @include filtro($oscuro);
+}
+.formulario{
+    background-color: $blanco;
+    padding: 5rem;
+    .formulario__input{
+        label{
+            display: block;
+            margin: 1rem 0rem;
+        }
+        input{
+            width: 100%;
+            padding: 1rem 1.6rem;
+            border-radius: .5rem;
+            border: 1px solid $azul;
+            outline: none;
+            &:last-of-type{
+                margin-bottom: 2rem;
+            }
+            &[type="submit"]{
+                background-color: $azul;
+                color: $blanco;
+                font-size: 2rem;
+                transition: background-color .3s ease-in-out;
+                &:hover{
+                    cursor: pointer;
+                    background-color: $verde;
+                }
+            }
+        }
+    }
+}
+
+.formulario__nocuenta{
+    text-align: center;
+    @include adaptar(768px){
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+    }
+    a{
+        color: $azul;
+        font-weight: bold;
+    }
+}
