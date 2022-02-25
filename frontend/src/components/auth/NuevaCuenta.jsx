@@ -1,17 +1,59 @@
-import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import authContext from "../../context/auth/authContext";
+
 const NuevaCuenta = () => {
+    const [usuario, guardarUsuario] = useState({
+        nombre: '',
+        correo: '',
+        password: '',
+        confirmar: ''
+    });
+    const { nombre, correo, password, confirmar } = usuario;
+    const authcontext = useContext(authContext);
+    const { registrarUsuario, mensaje, registrado } = authcontext;
+
+    let redireccionar = useNavigate();
+    //el usuario se registro correctamente
+    useEffect(()=>{
+        if(registrado){
+            redireccionar('/principal')
+        }
+    },[registrado])
+    const onSubmit = e => {
+        e.preventDefault();
+        if([nombre, correo, password, confirmar].includes('')){
+            console.log('Todos los campos son obligatorios');
+            return;
+        }
+        if(password.length < 6){
+            console.log('El password debe ser al menos de 6 caracteres');
+            return;
+        }
+        if(password !== confirmar){
+            console.log('Los passwords no son iguales');
+            return;
+        }
+        registrarUsuario({nombre, correo, password});
+    }
     return (
         <div className="contenedor contenedor-formulario">
             <div className="contenedor-imagen">
                 <h1>Registrate!</h1>
             </div>
-            <form className="formulario">
+            <form
+                className="formulario"
+                onSubmit={onSubmit}
+            >
                 <div className="formulario__input">
                     <label htmlFor="nombre">Nombre completo</label>
                     <input
                         type="text"
                         placeholder="Azael Garcia Jaimes"
                         id="nombre"
+                        value={nombre}
+                        name="nombre"
+                        onChange={(e) => guardarUsuario({ ...usuario, [e.target.name]: e.target.value })}
                     />
                 </div>
                 <div className="formulario__input">
@@ -20,6 +62,9 @@ const NuevaCuenta = () => {
                         type="text"
                         placeholder="correo@correo.com"
                         id="correo"
+                        value={correo}
+                        name="correo"
+                        onChange={(e) => guardarUsuario({ ...usuario, [e.target.name]: e.target.value })}
                     />
                 </div>
                 <div className="formulario__input">
@@ -28,6 +73,9 @@ const NuevaCuenta = () => {
                         id="password"
                         type="password"
                         placeholder="*********"
+                        value={password}
+                        name="password"
+                        onChange={(e) => guardarUsuario({ ...usuario, [e.target.name]: e.target.value })}
                     />
                 </div>
                 <div className="formulario__input">
@@ -36,13 +84,16 @@ const NuevaCuenta = () => {
                         id="passwordconfirmar"
                         type="password"
                         placeholder="*********"
+                        value={confirmar}
+                        name="confirmar"
+                        onChange={(e) => guardarUsuario({ ...usuario, [e.target.name]: e.target.value })}
                     />
                 </div>
 
                 <div className="formulario__input">
                     <input
                         type="submit"
-                        value="Iniciar Sesión"
+                        value="Registrarme"
                     />
                 </div>
                 <div className="formulario__nocuenta">
