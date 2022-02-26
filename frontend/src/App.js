@@ -2,6 +2,7 @@ import './sass/app.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/auth/Login';
 import NuevaCuenta from './components/auth/NuevaCuenta';
+import Usuarios from './components/layout/Usuarios';
 import AuthState from './context/auth/authState';
 import AlertaState from './context/alertas/alertaState';
 import tokenAuth from './config/token';
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/nueva-cuenta" element={<NuevaCuenta />} />
               <Route path="/principal" element={<RutaPrivada Component={Principal} />} />
+              < Route path="/usuarios" element={<Usuarios/>}/>
             </Route>
           </Routes>
         </BrowserRouter>

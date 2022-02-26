@@ -20,6 +20,10 @@ const usuariosSchema = mongoose.Schema({
     registro: {
         type: Date,
         default: Date.now()
+    },
+    ultimoLogin:{
+        type:Date,
+        default:Date.now()
     }
 
 });

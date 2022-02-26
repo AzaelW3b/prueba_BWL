@@ -1,0 +1,21 @@
+.tabla{
+   width: 100%;
+   margin-top: 7rem;
+    thead{
+        th{
+            background-color: $azul;
+            color: $blanco;
+            padding: 1rem;
+        }
+    }
+    tbody{
+        td{
+            padding: 1rem;
+        }
+    }
+    tr{
+        &:nth-child(even){
+            background-color: $blanco;
+        }
+    }
+}

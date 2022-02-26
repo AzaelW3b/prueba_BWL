@@ -16,6 +16,8 @@ exports.autenticarUsuario = async (req, res) => {
             return res.status(400).json({ msg: 'Password incorrecto' });
         }
         //si todo es correcto
+        await Usuarios.findOneAndUpdate({ ultimoLogin: Date.now()});
+        console.log(Usuarios);
         const payload = {
             usuario: {
                 id: usuario.id,
