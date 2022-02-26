@@ -1,25 +1,32 @@
 import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import authContext from '../../context/auth/authContext';
+import alertaContext from '../../context/alertas/alertaContext';
 const Login = () => {
+    const alertacontext = useContext(alertaContext);
+    const { alerta, mostrarAlerta } = alertacontext;
+
     const authcontext = useContext(authContext);
-    const {iniciarSesion, mensaje, registrado} = authcontext;
+    const { iniciarSesion, mensaje, registrado } = authcontext;
     const [usuario, guardarUsuario] = useState({
-        correo:'',
-        password:'', 
+        correo: '',
+        password: '',
     });
-    const {correo, password} = usuario;
+    const { correo, password } = usuario;
     let redireccionar = useNavigate();
-    
-    useEffect(()=>{
-        if(registrado){
+
+    useEffect(() => {
+        if (registrado) {
             redireccionar('/principal');
         }
-    },[registrado]);
-    const onSubmit = (e) =>{
+        if (mensaje) {
+            mostrarAlerta(mensaje.msg, mensaje.categoria);
+        }
+    }, [mensaje,registrado]);
+    const onSubmit = (e) => {
         e.preventDefault();
-        if(correo.trim()=== '' || password.trim() === ''){
-            console.log('Todos los campos son obligatorios');
+        if (correo.trim() === '' || password.trim() === '') {
+            mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
             return;
         }
         iniciarSesion(usuario);
@@ -29,11 +36,12 @@ const Login = () => {
             <div className="contenedor-imagen">
                 <h1>Bienvenido!</h1>
             </div>
-            <form 
+            <form
                 onSubmit={onSubmit}
                 className="formulario"
             >
                 <div className="formulario__input">
+                {alerta ? (<p className={`alerta ${alerta.categoria}`}>{alerta.msg}</p>) : null}
                     <label htmlFor="correo">Correo electrónico</label>
                     <input
                         type="text"
@@ -41,7 +49,7 @@ const Login = () => {
                         id="correo"
                         name="correo"
                         value={correo}
-                        onChange={(e)=>guardarUsuario({...usuario, [e.target.name]: e.target.value})}
+                        onChange={(e) => guardarUsuario({ ...usuario, [e.target.name]: e.target.value })}
                     />
                 </div>
                 <div className="formulario__input">
@@ -52,7 +60,7 @@ const Login = () => {
                         placeholder="*********"
                         name="password"
                         value={password}
-                        onChange={(e)=>guardarUsuario({...usuario, [e.target.name] : e.target.value})}
+                        onChange={(e) => guardarUsuario({ ...usuario, [e.target.name]: e.target.value })}
                     />
                 </div>
                 <div className="formulario__input">

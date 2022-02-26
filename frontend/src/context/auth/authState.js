@@ -87,6 +87,7 @@ const AuthState = props =>{
                 iniciarSesion,
                 usuarioAutenticado,
                 cerrarSesion,
+                token: state.token,
                 mensaje:state.mensaje,
                 registrado:state.registrado,
                 usuario:state.usuario

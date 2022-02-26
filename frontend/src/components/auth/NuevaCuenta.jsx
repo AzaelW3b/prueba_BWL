@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authContext from "../../context/auth/authContext";
-
+import alertaContext from '../../context/alertas/alertaContext';
 const NuevaCuenta = () => {
     const [usuario, guardarUsuario] = useState({
         nombre: '',
@@ -13,25 +13,32 @@ const NuevaCuenta = () => {
     const authcontext = useContext(authContext);
     const { registrarUsuario, mensaje, registrado } = authcontext;
 
+    const alertacontext = useContext(alertaContext);
+    const { alerta, mostrarAlerta } = alertacontext;
+
+
     let redireccionar = useNavigate();
     //el usuario se registro correctamente
     useEffect(()=>{
         if(registrado){
             redireccionar('/principal')
         }
-    },[registrado])
+        if(mensaje){
+            mostrarAlerta(mensaje.msg, mensaje.categoria);
+        }
+    },[registrado,mensaje]);
     const onSubmit = e => {
         e.preventDefault();
         if([nombre, correo, password, confirmar].includes('')){
-            console.log('Todos los campos son obligatorios');
+            mostrarAlerta('Todos los campos son obligatorios','alerta-error');
             return;
         }
         if(password.length < 6){
-            console.log('El password debe ser al menos de 6 caracteres');
+            mostrarAlerta('El password debe ser al menos de 6 caracteres','alerta-error');
             return;
         }
         if(password !== confirmar){
-            console.log('Los passwords no son iguales');
+            mostrarAlerta('Los passwords no son iguales','alerta-error');
             return;
         }
         registrarUsuario({nombre, correo, password});
@@ -41,6 +48,7 @@ const NuevaCuenta = () => {
             <div className="contenedor-imagen">
                 <h1>Registrate!</h1>
             </div>
+            {alerta ? (<p className={`alerta ${alerta.categoria}`}>{alerta.msg}</p>):null}
             <form
                 className="formulario"
                 onSubmit={onSubmit}
@@ -59,7 +67,7 @@ const NuevaCuenta = () => {
                 <div className="formulario__input">
                     <label htmlFor="correo">Correo electrónico</label>
                     <input
-                        type="text"
+                        type="email"
                         placeholder="correo@correo.com"
                         id="correo"
                         value={correo}
