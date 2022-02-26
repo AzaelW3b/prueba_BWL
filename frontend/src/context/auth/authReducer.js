@@ -1,4 +1,3 @@
-import Login from '../../components/auth/Login';
 import {
     REGISTRO_EXITOSO,
     REGISTRO_ERROR,
@@ -24,7 +23,10 @@ export default (state, action) => {
                 registrado:true,
                 usuario:action.payload,
             }
+        case CERRAR_SESION:
+        case LOGIN_ERROR:
         case REGISTRO_ERROR:
+            localStorage.removeItem('token');
             return{
                 ...state,
                 token:null,

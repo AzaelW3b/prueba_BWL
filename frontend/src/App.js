@@ -4,6 +4,7 @@ import Login from './components/auth/Login';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import AuthState from './context/auth/authState';
 import Principal from './components/layout/Principal';
+import RutaPrivada from './components/rutas/RutaPrivada';
 function App() {
   return (
     <AuthState>
@@ -12,7 +13,7 @@ function App() {
           <Route>
             <Route path="/" element={<Login />} />
             <Route path="/nueva-cuenta" element={<NuevaCuenta />} />
-            <Route path="/princial" element={<Principal/>} />
+            <Route path="/principal" element={<RutaPrivada Component={Principal} />} />
           </Route>
         </Routes>
       </BrowserRouter>

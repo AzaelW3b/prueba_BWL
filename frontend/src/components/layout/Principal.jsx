@@ -1,7 +1,17 @@
+import Navegacion from "./Navegacion";
+import authContext from "../../context/auth/authContext";
+import { useContext,useEffect } from "react";
 const Principal = () => {
-    return (  
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum dolorem adipisci, minima alias perspiciatis sint cum, provident sit quod a sequi iste. Dicta voluptates laboriosam tempore numquam, assumenda labore officiis!</h1>
+    const authcontext = useContext(authContext);
+    const { usuarioAutenticado } = authcontext;
+    useEffect(() => {
+        usuarioAutenticado();
+    }, []);
+    return (
+        <main className="principal">
+            <Navegacion />
+        </main>
     );
 }
- 
+
 export default Principal;

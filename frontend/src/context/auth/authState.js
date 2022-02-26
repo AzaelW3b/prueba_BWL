@@ -50,7 +50,14 @@ const AuthState = props =>{
             });
             usuarioAutenticado();
         } catch (error) {
-            console.log(error.response.data.msg);
+            const alerta = {
+                msg:error.response.data.msg,
+                categoria:'alerta-error',
+            }
+            dispatch({
+                type:LOGIN_ERROR,
+                payload:alerta,
+            });
         }
     }
     const usuarioAutenticado = async () =>{
@@ -68,14 +75,21 @@ const AuthState = props =>{
             console.log(error)
         }
     }
+    const cerrarSesion = () =>{
+        dispatch({
+            type:CERRAR_SESION,
+        })
+    }
     return(
         <authContext.Provider
             value={{
                 registrarUsuario,
                 iniciarSesion,
                 usuarioAutenticado,
+                cerrarSesion,
                 mensaje:state.mensaje,
                 registrado:state.registrado,
+                usuario:state.usuario
             }}
         >
            {props.children} 
