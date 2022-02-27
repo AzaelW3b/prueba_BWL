@@ -13,7 +13,7 @@ exports.crearTarea = async (req, res) => {
 
 exports.obtenerTareas = async (req, res) => {
     try {
-        const tareas = await Tarea.find({ usuario: req.usuario.id });
+        const tareas = await Tarea.find({}).sort({fecha:-1});
         res.json({ tareas });
     } catch (error) {
         console.log(error);
@@ -33,9 +33,9 @@ exports.editarTareas = async (req, res) => {
             return res.status(404).json({ msg: 'Tarea no encontrada' });
         }
 
-        if (tarea.usuario.toString() !== req.usuario.id) {
-            return res.status(401).json({ msg: 'No autorizado' });
-        }
+        // if (tarea.usuario.toString() !== req.usuario.id) {
+        //     return res.status(401).json({ msg: 'No autorizado' });
+        // }
         //actualizamos la tarea
         tarea = await Tarea.findByIdAndUpdate({ _id: req.params.id },
             { $set: tareaActualizada }, { new: true });

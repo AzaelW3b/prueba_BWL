@@ -3,23 +3,28 @@ import {
     OBTENER_TAREAS,
     AGREGAR_TAREA,
     ELIMINAR_TAREA,
+    ACTUALIZAR_TAREA
 } from '../../types';
+
 
 export default (state, action) =>{
     switch(action.type){
         case OBTENER_TAREAS:
             return{
-                // ...state,
-                // //serian los resultados ya filtrados
-                // tareasproyecto: action.payload
+                ...state,
+                tareas: action.payload
             }
         case AGREGAR_TAREA:
             return{
-                // ...state,
-                // //cambiamos las posiciones para que se agregue al inicio del arreglo
-                // tareasproyecto: [ action.payload, ...state.tareasproyecto],
-                // errortarea: false,
+                ...state,
+                tareas: [ action.payload, ...state.tareas]
             }
+        case ACTUALIZAR_TAREA:  
+        return{
+            ...state,
+            tareas: state.tareas.map(tarea=> tarea._id === action.payload._id ? action.payload: tarea),
+            taraesCompletadas: state.tareas.filter(tarea=> tarea.completada === true),
+        }
         case ELIMINAR_TAREA:
             return{     
                 // ...state,

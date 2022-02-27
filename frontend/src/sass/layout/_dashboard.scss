@@ -10,9 +10,13 @@
     }
     .dashboard__fila2{
         grid-row: 2/3;
+        height: 36.4rem;
+        overflow-y: scroll;
     }
     .dashboard__fila3{
         grid-row: 3/4;
+        height: 36.4rem;
+        overflow-y: scroll;
     }
     .dashboard__fila5{
         grid-column: 2/3;
@@ -125,6 +129,85 @@
             background-color: $azul;
             color: $blanco;
             transform: scale(1.1);
+        }
+    }
+}
+.dashboard__tareas{
+    h2{
+        text-align: center;
+        font-weight: normal;
+        font-size:3rem;
+        margin-top: 0;
+    }
+    ul{
+        list-style: none;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            
+        }
+        p{
+            font-size: 1.6rem;
+            color: $azul;
+            font-weight: bold;
+
+        }
+        p,button{
+            flex:0 0 calc(50%);
+        }
+    }
+    input,.btn-submit{
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: .5rem 1.3rem;
+    }
+    input{
+        outline: none;
+    }
+    button{
+        background-color: $azul;
+        color: $blanco;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+form{
+    .btn-submit{
+        background-color: $azul;
+        color: $blanco;
+        border: none;
+        font-weight: bold;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+.dasboard__tareas-completadas{
+    h2{
+        text-align: center;
+        font-weight: normal;
+        font-size:3rem;
+        margin-top: 0;
+    }
+    ul{
+        list-style: none;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            
+        }
+        p{
+            font-size: 1.6rem;
+            color: $azul;
+            font-weight: bold;
+
         }
     }
 }

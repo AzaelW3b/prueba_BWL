@@ -6,6 +6,7 @@ import {
     OBTENER_TAREAS,
     AGREGAR_TAREA,
     ELIMINAR_TAREA,
+    ACTUALIZAR_TAREA
 } from '../../types';
 
 
@@ -13,6 +14,7 @@ const TareaState = props => {
 
     const initialState = {
         tareas: [],
+        taraesCompletadas:[],
 
     }
 
@@ -21,28 +23,38 @@ const TareaState = props => {
     const obtenerTareas = async () => {
         try {
             const resultado = await clienteAxios.get('/api/tareas');
-            console.log(resultado);
-            // dispatch({
-            //     type: TAREAS_PROYECTO,
-            //     payload:resultado.data.tareas,
-            // });
+            dispatch({
+                type: OBTENER_TAREAS,
+                payload:resultado.data.tareas,
+            });
         } catch (error) {
             console.log(error);
         }
     }
-    obtenerTareas();
-    // const agregarTarea = async tarea => {
-    //     try {
-    //         const resultado = await clienteAxios.post('/api/tareas',tarea);
-    //         console.log(resultado);
-    //         dispatch({
-    //             type: AGREGAR_TAREA,
-    //             payload: resultado.data.tarea,
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    const agregarTarea = async tarea => {
+        try {
+            const resultado = await clienteAxios.post('/api/tareas',tarea);
+            console.log(resultado);
+            dispatch({
+                type: AGREGAR_TAREA,
+                payload: resultado.data.tarea,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const actualizarTarea = async tarea => {
+        try {
+        const resultado = await clienteAxios.put(`api/tareas/${tarea._id}`, tarea);
+        console.log(resultado);
+        // dispatch({
+        //     type: ACTUALIZAR_TAREA,
+        //     payload: resultado.data.tarea,
+        // });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     // const eliminarTarea = async (id, proyecto) => {
 
@@ -61,10 +73,12 @@ const TareaState = props => {
         <TareaContext.Provider
             value={{
                 tareas: state.tareas,
+                taraesCompletadas: state.taraesCompletadas,
                 // errortarea: state.errortarea,
                 // tareaseleccionada: state.tareaseleccionada,
                 obtenerTareas,
-                // agregarTarea,
+                agregarTarea,
+                actualizarTarea
                 // eliminarTarea,
             }}
         >
