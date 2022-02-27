@@ -5,6 +5,7 @@ import NuevaCuenta from './components/auth/NuevaCuenta';
 import Usuarios from './components/layout/Usuarios';
 import AuthState from './context/auth/authState';
 import AlertaState from './context/alertas/alertaState';
+import PaisState from './context/pais/PaisState';
 import tokenAuth from './config/token';
 import Principal from './components/layout/Principal';
 import RutaPrivada from './components/rutas/RutaPrivada';
@@ -14,20 +15,22 @@ function App() {
     tokenAuth(token);
   }
   return (
-    <AlertaState>
-      <AuthState>
-        <BrowserRouter>
-          <Routes>
-            <Route>
-              <Route path="/" element={<Login />} />
-              <Route path="/nueva-cuenta" element={<NuevaCuenta />} />
-              <Route path="/principal" element={<RutaPrivada Component={Principal} />} />
-              < Route path="/usuarios" element={<Usuarios/>}/>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </AuthState>
-    </AlertaState>
+    <PaisState>
+      <AlertaState>
+        <AuthState>
+          <BrowserRouter>
+            <Routes>
+              <Route>
+                <Route path="/" element={<Login />} />
+                <Route path="/nueva-cuenta" element={<NuevaCuenta />} />
+                <Route path="/principal" element={<RutaPrivada Component={Principal} />} />
+                < Route path="/usuarios" element={<Usuarios />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </AuthState>
+      </AlertaState>
+    </PaisState>
   );
 }
 

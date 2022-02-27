@@ -1,0 +1,42 @@
+.contenedor-dashboard{
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 2rem;
+    .fila{
+        background-color: $blanco;
+        padding: 5rem;
+    }
+    .dashboard__fila2{
+        grid-row: 2/3;
+    }
+    .dashboard__fila3{
+        grid-row: 3/4;
+    }
+    .dashboard__fila5{
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+    .dashboard__fila6{
+        grid-column: 2/3;
+        grid-row: 3/4;
+    }
+    .dashboard__fila7{
+       grid-column: 3/5;
+       grid-row: 1/4;
+    }
+}
+
+.lista-paises{
+    list-style: none;
+    li{
+        background-color: $azul;
+        margin:1rem 0;
+        text-align: center;
+        padding: 2rem;
+        font-size: 2.5rem;
+        color: $blanco;
+        user-select: none;
+    }
+}

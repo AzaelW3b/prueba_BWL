@@ -2,24 +2,21 @@ import { useEffect, useState, useContext } from "react";
 import clienteAxios from "../../config/axios";
 import Navegacion from "./Navegacion";
 import authContext from "../../context/auth/authContext";
-import moment from'moment';
+import moment from 'moment';
 import 'moment/locale/es';
 const Usuarios = () => {
-     const authcontext = useContext(authContext);
+    const authcontext = useContext(authContext);
     const { usuarioAutenticado } = authcontext;
     const [usuarios, obtenerUsuarios] = useState([]);
     useEffect(() => {
         usuarioAutenticado();
-        const consultarApi = () => {
-            clienteAxios.get('/api/usuarios')
-                .then(respuesta => {
-                    obtenerUsuarios(respuesta.data.usuarios);
-                    console.log(respuesta.data.usuarios);
-                });
-        }   
+        const consultarApi = async () => {
+            const respuesta = await clienteAxios.get('/api/usuarios')
+            obtenerUsuarios(respuesta.data.usuarios);
+        }
         consultarApi();
     }, []);
-    moment.locale('es-Mx'); 
+    moment.locale('es-Mx');
     return (
         <>
             <Navegacion />
