@@ -6,6 +6,7 @@ const PaisDisponible = () => {
     return (
         <>
             <ul className="lista-paises">
+                <h2>Paises disponibles</h2>
                 {
                     paises.length === 0 ? <li>No hay paises disponibles.</li> :
                         (paises.map((paisDisponible, i) => (

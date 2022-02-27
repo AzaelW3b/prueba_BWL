@@ -1,5 +1,5 @@
 .navegacion-contenedor{
-    background-color: $oscuro;
+    background-color: $azul;
 }
 .navegacion{
     padding-top: 2rem;
@@ -27,7 +27,7 @@
     position: absolute;
     z-index: 1;
     button{
-        background-color: $oscuro;
+        background-color: $azul;
         color:$blanco;
         font-weight: bold;
         padding: 1rem;
@@ -45,7 +45,7 @@
     width: 100%;
     p{
         margin-right: 2rem;
-        background-color: $azul;
+        background-color: $verde;
         border: 4px solid $blanco;
         padding:2rem;
         height: 2rem;

@@ -29,14 +29,102 @@
 }
 
 .lista-paises{
+    h2{
+        font-size: 3rem;
+        font-weight: normal;
+    }
     list-style: none;
     li{
-        background-color: $azul;
+        border: 1px solid $azul;
+        border-radius: .5rem;
         margin:1rem 0;
         text-align: center;
         padding: 2rem;
         font-size: 2.5rem;
-        color: $blanco;
+        color: $azul;
         user-select: none;
+        font-weight: bold;
+        transition: all .3s ease-in-out;
+        &:hover{
+            cursor: pointer;
+            background-color: $azul;
+            color: $blanco;
+            transform: scale(1.1);
+        }
+    }
+}
+.clima{
+    h2{
+        text-align: center;
+        font-weight: normal;
+        font-size: 3rem;
+    }
+}
+.clima__informacion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    p{
+        font-size: 2.5rem;
+        text-align: center;
+        span{
+            font-weight: bold;
+            color: $azul;
+        }
+    }
+}
+
+.pais{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h2{
+        font-size: 3rem;
+        font-weight: normal;
+    }
+    p{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $azul;
+    }
+}
+.hora{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2{
+        font-size: 3rem;
+        font-weight: normal;
+    }
+    p{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $azul;
+    }
+}
+.zonas{
+    ul{
+        list-style: none;
+    }
+    li{
+        border: 1px solid $azul;
+        border-radius: .5rem;
+        margin:1rem 0;
+        text-align: center;
+        padding: 2rem;
+        font-size: 2.5rem;
+        color: $azul;
+        user-select: none;
+        font-weight: bold;
+        transition: all .3s ease-in-out;
+        &:hover{
+            cursor: pointer;
+            background-color: $azul;
+            color: $blanco;
+            transform: scale(1.1);
+        }
     }
 }

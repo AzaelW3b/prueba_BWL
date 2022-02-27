@@ -11,3 +11,7 @@ export const OCULTAR_ALERTA = 'OCULTAR_ALERTA';
 export const OBTENER_CLIMA = 'OBTENER_CLIMA';
 export const OBTENER_PAIS  = 'OBTENER_PAIS';
 export const OBTENER_HORA =  'OBTENER_HORA';
+
+export const OBTENER_TAREAS = 'OBTENER_TAREAS';
+export const AGREGAR_TAREA = 'AGREGAR_TAREA';
+export const ELIMINAR_TAREA = 'ELIMINAR_TAREA';

@@ -10,6 +10,7 @@ const Hora = () => {
   console.log(hora);
     return (
         <div className="hora">
+          <h2>Hora</h2>
           <p>{moment(hora.localtime).format('LT')}</p>
         </div>
       );

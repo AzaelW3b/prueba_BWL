@@ -1,7 +1,7 @@
 const Tareas = () => {
     return (
         <div className="dashboard__tareas">
-            <h1>Desde tareas</h1>
+            <h2>Tareas pendientes</h2>
         </div>
       );
 }
